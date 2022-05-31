@@ -5,17 +5,17 @@ mkdir -p $HOME/ros_ws/src
 cd $HOME/ros_ws
 
 # add the ROS deb repo to the apt sources list
-apt update 
-apt install -y --no-install-recommends curl wget gnupg2 lsb-release ca-certificates
+sudo apt update 
+sudo apt install -y --no-install-recommends curl wget gnupg2 lsb-release ca-certificates
 
 
-curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
 
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
+sudo echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 
 # install development packages
-apt update && \
-apt install -y build-essential \
+sudo apt update && \
+sudo apt install -y build-essential \
     cmake \
     git \
     libbullet-dev \
@@ -36,10 +36,10 @@ apt install -y build-essential \
     libtinyxml2-dev \
     libcunit1-dev 
 
-python3 -m pip install --upgrade pip
+sudo python3 -m pip install --upgrade pip
 
 # install some pip packages needed for testing
-python3 -m pip install -U \
+sudo python3 -m pip install -U \
     argcomplete \
     pyqt5 \
     flake8-blind-except \
@@ -77,7 +77,7 @@ cd SDL2-2.0.12
 ./configure
 make
 make install
-ldconfig
+sudo ldconfig
 
 # https://answers.ros.org/question/325245/minimal-ros2-installation/?answer=325249#post-id-325249
 
@@ -101,9 +101,9 @@ git clone --branch foxy-devel https://github.com/ros/urdf_parser_py.git src/urdf
 git clone --branch foxy https://github.com/ros/joint_state_publisher.git src/joint_state_publisher && \
 
 # install dependencies using rosdep
-apt update && \
+sudo apt update && \
     cd ~/ros_ws && \
-rosdep init && \
+sudo rosdep init && \
      rosdep update && \
      rosdep install --from-paths src --ignore-src --rosdistro foxy -y --skip-keys "console_bridge fastcdr fastrtps rti-connext-dds-5.3.1 urdfdom_headers qt_gui" && \
     rosdep install --from-paths src --ignore-src --rosdistro foxy -y --skip-keys "" 
