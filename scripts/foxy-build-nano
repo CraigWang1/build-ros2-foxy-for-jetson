@@ -42,7 +42,6 @@ sudo python3 -m pip install --upgrade pip
 # install some pip packages needed for testing
 sudo python3 -m pip install -U \
     argcomplete \
-    pyqt5 \
     flake8-blind-except \
     flake8-builtins \
     flake8-class-newline \
