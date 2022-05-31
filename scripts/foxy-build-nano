@@ -32,6 +32,7 @@ sudo apt install -y build-essential \
     python3-setuptools \
     python3-vcstool \
     python3-rosinstall-generator \
+    python3-pyqt5 \
     libasio-dev \
     libtinyxml2-dev \
     libcunit1-dev 
